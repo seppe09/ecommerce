@@ -8,7 +8,7 @@ from django.shortcuts import redirect
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("apps.accounts.urls")),
-    path("", lambda request: redirect("dashboard"), name="root_redirect"),
+    path("products/", include("apps.products.urls")),
 ]
 if settings.DEBUG:
     urlpatterns += static(

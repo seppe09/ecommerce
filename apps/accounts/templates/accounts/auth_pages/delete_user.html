@@ -16,18 +16,9 @@
                     <a href="{% url 'view_profile' %}" class="list-group-item list-group-item-action border-0 py-3 rounded-3">
                         My Profile
                     </a>
-                    <a href="{% url 'edit_profile' %}" class="list-group-item list-group-item-action border-0 py-3 rounded-3">
-                        Edit Profile
-                    </a>
                     <a href="#" class="list-group-item list-group-item-action border-0 py-3 rounded-3 active bg-danger border-danger">
                         Delete Account
                     </a>
-                    <form method="post" action="{% url 'logout' %}" class="mt-2">
-                        {% csrf_token %}
-                        <button type="submit" class="list-group-item list-group-item-action border-0 py-3 rounded-3 text-danger w-100 text-start bg-transparent">
-                            Logout
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>
