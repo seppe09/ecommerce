@@ -1,4 +1,5 @@
 from django.db import models
+<<<<<<< HEAD
 from ..accounts.models import BaseModel
 from django.conf import settings
 
@@ -23,3 +24,7 @@ class Product(BaseModel):
         return f"{self.title} - {self.seller.full_name}"
     
 
+=======
+
+# Create your models here.
+>>>>>>> 9343361705b3308eacf22282d0e1047c41f89037

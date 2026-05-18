@@ -4,7 +4,11 @@ WSGI config for ecommerce project.
 It exposes the WSGI callable as a module-level variable named ``application``.
 
 For more information on this file, see
+<<<<<<< HEAD
 https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
+=======
+https://docs.djangoproject.com/en/6.0/howto/deployment/wsgi/
+>>>>>>> 9343361705b3308eacf22282d0e1047c41f89037
 """
 
 import os

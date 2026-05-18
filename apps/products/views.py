@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from apps.utils import extract_post_data
@@ -56,3 +57,8 @@ def add_product_view(request):
             messages.error(request, f"Error adding product: {str(e)}")
             
     return render(request, "products/add_product.html", {"categories": categories})
+=======
+from django.shortcuts import render
+
+# Create your views here.
+>>>>>>> 9343361705b3308eacf22282d0e1047c41f89037

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+<<<<<<< HEAD
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -31,3 +32,10 @@ class Profile(BaseModel):
 
     def __str__(self):
         return self.user.username
+=======
+class User(AbstractUser):
+    bio = models.TextField(max_length=500)
+
+    def __str__(self):
+        return self.username
+>>>>>>> 9343361705b3308eacf22282d0e1047c41f89037

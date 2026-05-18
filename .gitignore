@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 .env
 media/*
 __pycache__/
 *.py[cod]
 *$py.class
+=======
+>>>>>>> 9343361705b3308eacf22282d0e1047c41f89037
 
