@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-lg-3 mb-4">
+            <div class="card border-0 shadow-sm rounded-4 p-3">
+                <h5 class="fw-bold mb-4 px-2">Account menu</h5>
+                <div class="list-group list-group-flush">
+                    <a href="{% url 'dashboard' %}" class="list-group-item list-group-item-action border-0 py-3 rounded-3 active">
+                        Dashboard
+                    </a>
+                    <a href="{% url 'view_profile' %}" class="list-group-item list-group-item-action border-0 py-3 rounded-3">
+                        My Profile
+                    </a>
+                    <form method="post" action="{% url 'logout' %}" class="mt-2">
+                        {% csrf_token %}
+                        <button type="submit" class="list-group-item list-group-item-action border-0 py-3 rounded-3 text-danger w-100 text-start bg-transparent">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-lg-9">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="fw-bold mb-1">
+                        Welcome back, {{ request.user.username }}
+                    </h2>
+                    <p class="text-muted mb-0">
+                        Here's your store overview
+                    </p>
+                </div>
+                {% if request.user.is_seller %}
+                <a href="#" class="btn btn-dark rounded-3 px-4">
+                    Add Product
+                </a>
+                {% endif %}
+            </div>
+            <!-- Stats -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm rounded-4 p-4">
+                        <p class="text-muted mb-2">
+                            Total Sales
+                        </p>
+                        <h3 class="fw-bold mb-0">
+                            $18,450
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm rounded-4 p-4">
+                        <p class="text-muted mb-2">
+                            Orders
+                        </p>
+                        <h3 class="fw-bold mb-0">
+                            128
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm rounded-4 p-4">
+                        <p class="text-muted mb-2">
+                            Customers
+                        </p>
+                        <h3 class="fw-bold mb-0">
+                            1,240
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Table -->
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold mb-0">
+                        Recent Orders
+                    </h5>
+                    <a href="#" class="text-dark text-decoration-none">
+                        View All
+                    </a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Customer</th>
+                                <th>Status</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#8932</td>
+                                <td>Jane Doe</td>
+                                <td>
+                                    <span class="badge bg-dark">
+                                        Shipped
+                                    </span>
+                                </td>
+                                <td>$340</td>
+                            </tr>
+                            <tr>
+                                <td>#8933</td>
+                                <td>John Smith</td>
+                                <td>
+                                    <span class="badge bg-secondary">
+                                        Pending
+                                    </span>
+                                </td>
+                                <td>$128</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

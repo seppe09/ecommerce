@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Profile - {{ user.username }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-lg-3 mb-4">
+            <div class="card border-0 shadow-sm rounded-4 p-3">
+                <h5 class="fw-bold mb-4 px-2">Account menu</h5>
+                <div class="list-group list-group-flush">
+                    <a href="{% url 'dashboard' %}" class="list-group-item list-group-item-action border-0 py-3 rounded-3">
+                        Dashboard
+                    </a>
+                    <a href="{% url 'view_profile' %}" class="list-group-item list-group-item-action border-0 py-3 rounded-3">
+                        My Profile
+                    </a>
+                    <a href="{% url 'edit_profile' %}" class="list-group-item list-group-item-action border-0 py-3 rounded-3 active">
+                        Edit Profile
+                    </a>
+                    <a href="{% url 'delete_user' request.user.id %}" class="list-group-item list-group-item-action border-0 py-3 rounded-3 text-danger">
+                        Delete Account
+                    </a>
+                    <form method="post" action="{% url 'logout' %}" class="mt-2">
+                        {% csrf_token %}
+                        <button type="submit" class="list-group-item list-group-item-action border-0 py-3 rounded-3 text-danger w-100 text-start bg-transparent">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-lg-9">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-header bg-white border-0 pt-4 px-4">
+                    <h3 class="fw-bold mb-0">Edit Profile</h3>
+                    <p class="text-muted small">Update your personal information and profile settings.</p>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <div class="row g-3">
+                            <!-- User Information Section -->
+                            <div class="col-12 mt-2 mb-1">
+                                <h5 class="fw-bold border-bottom pb-2">Basic Information</h5>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control rounded-3" name="first_name" value="{{ user.first_name }}" placeholder="Enter first name">
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label class="form-label">Middle Name</label>
+                                <input type="text" class="form-control rounded-3" name="middle_name" value="{{ user.middle_name|default:'' }}" placeholder="Enter middle name">
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control rounded-3" name="last_name" value="{{ user.last_name }}" placeholder="Enter last name">
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control rounded-3" name="email" value="{{ user.email }}" placeholder="email@example.com">
+                            </div>
+
+                            <!-- Profile Information Section -->
+                            <div class="col-12 mt-4 mb-1">
+                                <h5 class="fw-bold border-bottom pb-2">Profile Details</h5>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label class="form-label">Gender</label>
+                                <select class="form-select rounded-3 py-2 px-3" name="gender">
+                                    <option value="">Select Gender</option>
+                                    {% for value, label in genders %}
+                                        <option value="{{ value }}" {% if profile.gender == value %}selected{% endif %}>{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control rounded-3" name="date_of_birth" value="{{ profile.date_of_birth|date:'Y-m-d' }}">
+                            </div>
+                            
+                            <div class="col-12">
+                                <label class="form-label">Profile Image</label>
+                                <input type="file" class="form-control rounded-3" name="profile_image" accept="image/*">
+                                {% if profile.profile_image %}
+                                    <div class="mt-2 small text-muted">
+                                        Current: <a href="{{ profile.profile_image.url }}" target="_blank">{{ profile.profile_image.name }}</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-12">
+                                <label class="form-label">Bio</label>
+                                <textarea class="form-control rounded-3" name="bio" rows="4" placeholder="Tell us something about yourself...">{{ profile.bio|default:'' }}</textarea>
+                            </div>
+                            
+                            <div class="col-12 mt-4">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <a href="{% url 'view_profile' %}" class="btn btn-light px-4 rounded-pill">Cancel</a>
+                                    <button type="submit" class="btn btn-dark px-5 rounded-pill">Save Changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

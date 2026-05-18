@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+.form-label {
+    color: #212529;
+    font-weight: 600;
+    margin-bottom: 4px;
+    padding: 10px 14px;
+}
+
+.form-control {
+    border: 1px solid #dcdcdc;
+    padding: 14px 16px;
+    font-size: 15px;
+}
+
+.form-control:focus {
+    border-color: #111;
+    box-shadow: none;
+}
+
+.mb-3,
+.mb-4 {
+    margin-bottom: 1.4rem !important;
+}
+
+.card {
+    max-width: 650px;
+    margin: auto;
+}
